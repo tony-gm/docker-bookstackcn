@@ -16,12 +16,14 @@ RUN apt-get update -qqy \
   && apt-get install -y google-chrome-stable \
   && rm -rf /etc/apt/sources.list.d/google-chrome.list \
   ###install bookstack
-  && mkdir /opt/bookstack/ \
-  && cd /opt/bookstack/ \
+  && mkdir /opt/ \
+  && cd /opt/ \
   && wget https://github.com/TruthHun/BookStack/releases/download/${BOOKSTACK_VER}/${BOOKSTACK_PKG} \
   && unzip ${BOOKSTACK_PKG} \
+  && mv linux bookstack \
+  && cd bookstack \
   && chmod +x BookStack \
-  && rm -rf ${BOOKSTACK_PKG} \
+  && rm -rf /opt/${BOOKSTACK_PKG} \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
   && apt-get clean
 
