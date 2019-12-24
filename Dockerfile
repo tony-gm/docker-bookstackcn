@@ -20,7 +20,7 @@ RUN  cd /opt/ \
   && mv linux bookstack \
   && cd bookstack \
   && chmod +x BookStack \
-  && rm -rf ${BOOKSTACK_PKG} \
+  && rm -rf /opt/${BOOKSTACK_PKG} \
   && yum clean all
 
 COPY ./entrypoint.sh /
