@@ -1,4 +1,4 @@
-FROM centos7
+FROM centos:centos7
 
 ENV CALIBRE_URL=https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py \
     BOOKSTACK_VER=v2.3 \
