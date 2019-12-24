@@ -16,9 +16,6 @@ RUN yum install -y wget unzip git \
   && cd /opt/ \
   && wget https://github.com/TruthHun/BookStack/releases/download/${BOOKSTACK_VER}/${BOOKSTACK_PKG} \
   && unzip ${BOOKSTACK_PKG} \
-  && mv linux bookstack \
-  && cd bookstack \
-  && chmod +x BookStack \
   && rm -rf ${BOOKSTACK_PKG} \
   && yum clean all
 
