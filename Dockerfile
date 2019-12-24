@@ -3,9 +3,9 @@ FROM ubuntu
 ENV CALIBRE_URL=https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py \
     BOOKSTACK_VER=v2.3 \
     BOOKSTACK_PKG=BookStack.V2.3_Linux_amd64.zip
-    
+
 RUN apt-get update -qqy \
-  && apt-get install -y ttf-wqy-zenhei fonts-wqy-microhei \
+  && apt-get install -y ttf-wqy-zenhei fonts-wqy-microhei apt-utils\
   && apt-get install -y wget unzip git python xdg-utils xz-utils imagemagick \
   ###install calibre
   && wget -nv -O- ${CALIBRE_URL} | python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()";exit 0 \
