@@ -11,13 +11,12 @@ RUN apt-get update -qqy \
   && wget -nv -O- ${CALIBRE_URL} | python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()";exit 0 \
   && rm -rf /tmp/calibre-installer-cache \
   ###install google-chrome
-  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
   && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
   && apt-get install -y google-chrome-stable \
   && rm -rf /etc/apt/sources.list.d/google-chrome.list \
   ###install bookstack
-  && mkdir /opt/ \
-  && cd /opt/ \
+RUN cd /opt/ \
   && wget https://github.com/TruthHun/BookStack/releases/download/${BOOKSTACK_VER}/${BOOKSTACK_PKG} \
   && unzip ${BOOKSTACK_PKG} \
   && mv linux bookstack \
