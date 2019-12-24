@@ -1,10 +1,10 @@
-FROM centos
+FROM centos7
 
 ENV CALIBRE_URL=https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py \
     BOOKSTACK_VER=v2.3 \
     BOOKSTACK_PKG=BookStack.V2.3_Linux_amd64.zip 
 
-RUN yum install -y wget unzip git python2 \
+RUN yum install -y wget unzip git \
   ###install calibre
   && wget -nv -O- ${CALIBRE_URL} | python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()" \
   && rm -rf /tmp/calibre-installer-cache 
