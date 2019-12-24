@@ -4,9 +4,9 @@ ENV CALIBRE_URL=https://raw.githubusercontent.com/kovidgoyal/calibre/master/setu
     BOOKSTACK_VER=v2.3 \
     BOOKSTACK_PKG=BookStack.V2.3_Linux_amd64.zip 
 
-RUN yum install -y wget unzip git python \
+RUN yum install -y wget unzip git python2 \
   ###install calibre
-  && wget -nv -O- ${CALIBRE_URL} | python2 -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()" \
+  && wget -nv -O- ${CALIBRE_URL} | python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()" \
   && rm -rf /tmp/calibre-installer-cache 
   ###install chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
