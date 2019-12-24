@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM centos
 
 ENV CALIBRE_URL=https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py \
     BOOKSTACK_VER=v2.3 \
@@ -7,20 +7,19 @@ ENV CALIBRE_URL=https://raw.githubusercontent.com/kovidgoyal/calibre/master/setu
 RUN yum install -y wget unzip git \
   ###install calibre
   && wget -nv -O- ${CALIBRE_URL} | python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()" \
-  && rm -rf /tmp/calibre-installer-cache 
+  && rm -rf /tmp/calibre-installer-cache \
   ###install chrome
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
+  && wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
   && yum -y localinstall google-chrome-stable_current_x86_64.rpm \
-  && rm -rf google-chrome-stable_current_x86_64.rpm 
+  && rm -rf google-chrome-stable_current_x86_64.rpm \ 
   ###install bookstack
-
-RUN  cd /opt/ \
+  && cd /opt/ \
   && wget https://github.com/TruthHun/BookStack/releases/download/${BOOKSTACK_VER}/${BOOKSTACK_PKG} \
   && unzip ${BOOKSTACK_PKG} \
   && mv linux bookstack \
   && cd bookstack \
   && chmod +x BookStack \
-  && rm -rf /opt/${BOOKSTACK_PKG} \
+  && rm -rf ${BOOKSTACK_PKG} \
   && yum clean all
 
 COPY ./entrypoint.sh /
