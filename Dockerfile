@@ -27,6 +27,5 @@ RUN chmod +x /entrypoint.sh
 
 WORKDIR /opt/bookstack/
 EXPOSE 8181
-VOLUME ["/opt/bookstack"]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
